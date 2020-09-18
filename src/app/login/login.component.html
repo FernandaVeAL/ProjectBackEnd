@@ -1,0 +1,25 @@
+<mat-card >
+  <mat-card-content>
+
+    <form class="example-form" >
+      <mat-form-field class="example-full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput #message maxlength="256" placeholder="Ex. usuario@login.com">
+        <mat-hint align="start"><strong>Informar o e-mail de login</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput #message maxlength="256" placeholder="A senha é composta por números, letras e símbolos">
+        <mat-hint align="start"><strong>Informar a senha de login</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="button">Logar</button>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+
+  <span>RMK PROJETOS</span>
+  <span class="example-spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="belowFunc">FUNCIONÁRIOS</button>
+  <mat-menu #belowFunc="matMenu" yPosition="below">
+    <button mat-menu-item>CADASTRAR FUNCIONÁRIO</button>
+    <button mat-menu-item>CONSULTAR FUNCIONÁRIO</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="belowCli">CLIENTES</button>
+  <mat-menu #belowCli="matMenu" yPosition="below">
+    <button mat-menu-item>CADASTRAR CLIENTE</button>
+    <button mat-menu-item>CONSULTAR CLIENTE</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="belowObra">OBRAS</button>
+  <mat-menu #belowObra="matMenu" yPosition="below">
+    <button mat-menu-item>CADASTRAR OBRA</button>
+    <button mat-menu-item>CONSULTAR OBRA</button>
+  </mat-menu>
+
+  <button mat-button><span>ATENDER CHAT</span></button>
+
+</mat-toolbar>
