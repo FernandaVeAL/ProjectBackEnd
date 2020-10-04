@@ -10,21 +10,24 @@
 
   <button mat-button [matMenuTriggerFor]="belowObras">OBRAS</button>
   <mat-menu #belowObras="matMenu" yPosition="below">
-    <button mat-menu-item>CADASTRAR OBRA</button>
-    <button mat-menu-item>CONSULTAR OBRA</button>
+    <button mat-menu-item>OBRAS CONCLUÍDAS</button>
+    <button mat-menu-item routerLink="/ObraSolicitar" routerLinkActive="active">SOLICITAR OBRA</button>
+    <button mat-menu-item routerLink="/ObraConsultar" routerLinkActive="active">CONSULTAR OBRA</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="belowContato">CONTATO</button>
   <mat-menu #belowContato="matMenu" yPosition="below">
-    <button mat-menu-item>E-MAIL</button>
+    <button mat-menu-item routerLink="/Email" routerLinkActive="active">E-MAIL</button>
     <button mat-menu-item>CHAT</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="belowLogin">LOGIN</button>
   <mat-menu #belowLogin="matMenu" yPosition="below">
-    <button mat-menu-item>LOGIN CLIENTE</button>
-    <button mat-menu-item>CADASTRAR-SE</button>
-    <button mat-menu-item>LOGIN FUNCIONÁRIO</button>
+    <button mat-menu-item routerLink="/ClienteLogin" routerLinkActive="active">LOGIN CLIENTE</button>
+    <button mat-menu-item routerLink="/ClienteCadastrar" routerLinkActive="active">CADASTRAR-SE</button>
+    <button mat-menu-item routerLink="/FuncionarioLogin" routerLinkActive="active">LOGIN FUNCIONÁRIO</button>
   </mat-menu>
 
 </mat-toolbar>
+
+<router-outlet></router-outlet>

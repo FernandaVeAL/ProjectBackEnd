@@ -1,0 +1,46 @@
+<mat-card >
+
+  <form class="example-form" >
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Tipo de Obra</mat-label>
+      <input matInput #message maxlength="30" placeholder="Ex. Residencial ou industrial">
+      <mat-hint align="start"><strong>Inserir o tipo da obra</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Porte</mat-label>
+      <input matInput #message maxlength="30" placeholder="Ex. 300 metros ao quadrado (m²)">
+      <mat-hint align="start"><strong>Informar a metragem da obra</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Cidade</mat-label>
+      <input matInput #message maxlength="14" placeholder="Ex. São Paulo">
+      <mat-hint align="start"><strong>Informar a acidade da obra</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 14</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>CEP</mat-label>
+      <input matInput #message maxlength="14" placeholder="Ex. XXXXX-XXX">
+      <mat-hint align="start"><strong>Informar o CEP da localização da obra</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 14</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Breve Descrição da Obra</mat-label>
+      <input matInput #message maxlength="300" placeholder="Ex. Eu gostaria de reformar a cozinha da minha casa, trocar o piso...">
+      <mat-hint align="start"><strong>Descrever a obra que pretende fazer</strong> </mat-hint>
+      <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="button">Cadastrar</button>
+
+  </form>
+
+</mat-card>
+
+

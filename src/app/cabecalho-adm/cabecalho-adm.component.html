@@ -6,22 +6,27 @@
 
   <button mat-button [matMenuTriggerFor]="belowFunc">FUNCIONÁRIOS</button>
   <mat-menu #belowFunc="matMenu" yPosition="below">
-    <button mat-menu-item>CADASTRAR FUNCIONÁRIO</button>
-    <button mat-menu-item>CONSULTAR FUNCIONÁRIO</button>
+    <button mat-menu-item routerLink="/FuncionarioCadastrar" routerLinkActive="active">CADASTRAR FUNCIONÁRIO</button>
+    <button mat-menu-item routerLink="/FuncionarioConsultar" routerLinkActive="active">CONSULTAR FUNCIONÁRIO</button>
+    <button mat-menu-item >ALTERAR FUNCIONÁRIO</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="belowCli">CLIENTES</button>
   <mat-menu #belowCli="matMenu" yPosition="below">
-    <button mat-menu-item>CADASTRAR CLIENTE</button>
-    <button mat-menu-item>CONSULTAR CLIENTE</button>
+    <button mat-menu-item routerLink="/Funcionario/ClienteCadastrar" routerLinkActive="active">CADASTRAR CLIENTE</button>
+    <button mat-menu-item routerLink="/Funcionario/ClienteConsultar" routerLinkActive="active">CONSULTAR CLIENTE</button>
+    <button mat-menu-item >ALTERAR CLIENTE</button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="belowObra">OBRAS</button>
   <mat-menu #belowObra="matMenu" yPosition="below">
-    <button mat-menu-item>CADASTRAR OBRA</button>
-    <button mat-menu-item>CONSULTAR OBRA</button>
+    <button mat-menu-item routerLink="Funcionario/ObraCadastrar" routerLinkActive="active">CADASTRAR OBRA</button>
+    <button mat-menu-item routerLink="Funcionario/ObraConsultar" routerLinkActive="active">CONSULTAR OBRA</button>
+    <button mat-menu-item>ATUALIZAR OBRA</button>
   </mat-menu>
 
   <button mat-button><span>ATENDER CHAT</span></button>
 
 </mat-toolbar>
+
+<router-outlet></router-outlet>
