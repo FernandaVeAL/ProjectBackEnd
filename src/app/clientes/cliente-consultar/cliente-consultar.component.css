@@ -1,11 +1,24 @@
 /* Structure */
-table {
+/* table {
   width: 100%;
-  padding: 20px;
-}
+  
+} */
 
 .mat-form-field {
   font-size: 14px;
   width: 100%;
-  padding: 20px;
+  
+}
+.table-container {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+td.footer {
+  font-style: italic;
+  text-align: center;
 }

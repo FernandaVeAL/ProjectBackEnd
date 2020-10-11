@@ -1,33 +1,51 @@
-import { Component } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit, OnDestroy, ViewChild  } from "@angular/core";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
+import { Cliente } from "../cliente.model";
+import { ClienteService } from "../cliente.service";
+import { Subscription, Observable } from "rxjs";
+import { MatPaginator } from '@angular/material/paginator';
+import {EditDialogComponent} from '../dialogs/edit/edit.dialog.component';
+import {DeleteDialogComponent} from '../dialogs/delete/delete.dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
-export interface PeriodicElement {
-  nome: string;
-  cpf: string;
-  email: string;
-  tel: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { nome: 'Beatriz', cpf: '426.941.110-65', email: 'beatriz@email.com', tel: '(78)12346-7467'},
-  { nome: 'Arthur', cpf: '758.618.615-89', email: 'arthur@email.com', tel: '(34)82695-8483'},
-  { nome: 'Chiclete Leona', cpf: '78.945.612/1000-78', email: 'secretaria@chicleteleona.com', tel: '(15)7854-7829'},
-];
 
 @Component({
-  selector: 'app-cliente-consultar',
-  templateUrl: './cliente-consultar.component.html',
-  styleUrls: ['./cliente-consultar.component.css']
+  selector: "app-cliente-consultar",
+  templateUrl: "./cliente-consultar.component.html",
+  styleUrls: ["./cliente-consultar.component.css"],
 })
-export class ClienteConsultarComponent {
+export class ClienteConsultarComponent implements OnInit,  OnDestroy {
+  clientes: Cliente[] = [];
 
-  displayedColumns: string[] = ['nome', 'cpf', 'email', 'tel'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ["nome", "cpf", "email", "telefone","remover","editar"];
+  dataSource = new MatTableDataSource<Cliente>();
+  @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  private clientesSubscription: Subscription;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
+  constructor(public clienteService: ClienteService,private dialog: MatDialog) {}
+  ngOnInit(): void {
+    this.clienteService.getClientes();
+    this.clientesSubscription = this.clienteService
+      .getListaDeClientesAtualizadaObservable()
+      .subscribe((clientes: Cliente[]) => {
+        this.dataSource = new MatTableDataSource(clientes);
+      });
+  }
+  ngOnDestroy(): void {
+    this.clientesSubscription.unsubscribe();
+    }
+    removeAll() {
+      this.dataSource.data = [];
+    }
+    
+    OnDeleteItem(id:string,nome: string, email: string, cpf:string, telefone: string) { 
+      const dialogRef = this.dialog.open(DeleteDialogComponent, {
+        data: {id: id,nome: nome, email: email, cpf: cpf, telefone:telefone }
+      });
+    }
 }
