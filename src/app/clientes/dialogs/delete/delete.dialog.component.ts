@@ -11,8 +11,7 @@ export class DeleteDialogComponent {
   constructor(
     public clienteService: ClienteService,
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dataService: ClienteService
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   onNoClick(): void {

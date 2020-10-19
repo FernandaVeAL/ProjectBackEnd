@@ -1,52 +1,53 @@
 <mat-card>
 
-  <form class="form" (submit)="onAdicionarCliente(clienteForm)" #clienteForm="ngForm">
+  <form [formGroup]="form" (submit)="onAdicionarCliente()">
 
     <mat-form-field class="width">
       <mat-label>Nome</mat-label>
-      <input required matInput #message1 maxlength="200" placeholder="Ex. Maria Clara Antônio" name="nome" ngModel
-        #nome="ngModel">
-      <mat-error *ngIf="nome.invalid">Digite um nome válido</mat-error>
+      <input type="text" matInput placeholder="Ex. Maria Clara Antônio" formControlName="nome" name="nome" #message1>
+      <mat-error *ngIf="form.get('nome').invalid">Digite um nome válido</mat-error>
       <mat-hint align="start"><strong>Inserir seu nome completo</strong> </mat-hint>
       <mat-hint align="end">{{message1.value.length}} / 200</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width">
       <mat-label>E-mail</mat-label>
-      <input required matInput #message2 maxlength="30" placeholder="Ex. usuario@login.com" name="email" ngModel
-        #email="ngModel">
-      <mat-error *ngIf="email.invalid">Digite um email válido</mat-error>
+      <input type="text" matInput placeholder="Ex. usuario@login.com" formControlName="email" name="email" #message2>
+      <mat-error *ngIf="form.get('email').invalid">Digite um email válido</mat-error>
       <mat-hint align="start"><strong>Inserir o e-mail de login</strong> </mat-hint>
       <mat-hint align="end">{{message2.value.length}} / 30</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width">
       <mat-label>CPF ou CNPJ</mat-label>
-      <input required matInput #message3 maxlength="14" placeholder="Ex. XXX.XXX.XXX-XX ou XX.XXX.XXX/YYYY-ZZ"
-        name="cpf" ngModel #cpf="ngModel">
-      <mat-error *ngIf="cpf.invalid">Digite um CPF ou CNPJ válido</mat-error>
+      <input type="text" matInput placeholder="Ex. XXX.XXX.XXX-XX ou XX.XXX.XXX/YYYY-ZZ" formControlName="cpf"
+        name="cpf" #message3>
+      <mat-error *ngIf="form.get('cpf').invalid">Digite um CPF ou CNPJ válido</mat-error>
       <mat-hint align="start"><strong>Inserir seu CPF ou CNPJ com ponto(.) e traço(-)</strong> </mat-hint>
       <mat-hint align="end">{{message3.value.length}} / 14</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width">
       <mat-label>Telefone de Contato</mat-label>
-      <input required matInput #message4 maxlength="14" placeholder="Ex. (XX)XXXXX-XXXX" name="telefone" ngModel
-        #telefone="ngModel">
-      <mat-error *ngIf="telefone.invalid">Digite um telefone válido</mat-error>
+      <input type="text" matInput placeholder="Ex. (XX)XXXXX-XXXX" formControlName="telefone" name="telefone" #message4>
+      <mat-error *ngIf="form.get('telefone').invalid">Digite um telefone válido</mat-error>
       <mat-hint align="start"><strong>Inserir seu número de celuar com DDD</strong> </mat-hint>
       <mat-hint align="end">{{message4.value.length}} / 14</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="width">
       <mat-label>Senha</mat-label>
-      <input required matInput #message minlength="8" maxlength="200" placeholder="Ex. XXXXXXXX" name="senha" ngModel
-        #senha="ngModel">
-      <mat-error *ngIf="senha.invalid">Digite uma senha com pelo menos 8 caracteres</mat-error>
+      <input type="text" matInput placeholder="Ex. XXXXXXXX" formControlName="senha" name="senha" #message5
+        [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="form.get('senha').invalid">Digite uma senha com pelo menos 8 caracteres</mat-error>
       <mat-hint align="start"><strong>Inserir uma senha de no mínimo 8 caracteres composta de números, letras e
           símbolos</strong>
       </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 8</mat-hint>
+      <mat-hint align="end">{{message5.value.length}} / 8</mat-hint>
     </mat-form-field>
 
     <button mat-raised-button color="primary" class="button">Cadastrar</button>

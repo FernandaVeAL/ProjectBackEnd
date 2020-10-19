@@ -1,38 +1,61 @@
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Component, Inject} from '@angular/core';
-import {ClienteService} from '../../cliente.service';
-import {FormControl, Validators} from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { Component, Inject, OnInit } from "@angular/core";
+import { ClienteService } from "../../cliente.service";
+import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { Cliente } from "../../cliente.model";
 
 @Component({
-  selector: 'app-baza.dialog',
-  templateUrl: '../../dialogs/edit/edit.dialog.html',
-  styleUrls: ['../../dialogs/edit/edit.dialog.css']
+  selector: "app-edit.dialog",
+  templateUrl: "./edit.dialog.html",
+  styleUrls: ["./edit.dialog.css"],
 })
-export class EditDialogComponent {
-
-  constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: ClienteService) { }
-
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
-
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
-  }
-
-  submit() {
-    // emppty stuff
-  }
+export class EditDialogComponent implements OnInit {
+  hide = true;
+  form: FormGroup;
+  public cliente: Cliente;
+  constructor(
+    public clienteService: ClienteService,
+    public dialogRef: MatDialogRef<EditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+  confirmEdit(id: string): void {
+    this.clienteService.atualizarCliente(
+      id,
+      this.form.value.nome,
+      this.form.value.email,
+      this.form.value.cpf,
+      this.form.value.telefone
+    );
+    this.dialogRef.close();
+  }
+  ngOnInit() {
+    this.form = new FormGroup({
+      nome: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(4)],
+      }),
+      email: new FormControl(null, {
+        validators: [Validators.required, Validators.email],
+      }),
+      cpf: new FormControl(null, {
+        validators: [Validators.required, Validators.maxLength(14)],
+      }),
+      telefone: new FormControl(null, {
+        validators: [Validators.required, Validators.maxLength(14)],
+      }),
+      senha: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(8)],
+      }),
+    });
 
-  stopEdit(): void {
-    // this.dataService.updateIssue(this.data);
+    this.form.patchValue({
+      nome: this.data.nome,
+      email: this.data.email,
+      cpf: this.data.cpf,
+      telefone: this.data.telefone,
+    });
   }
 }

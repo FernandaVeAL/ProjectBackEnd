@@ -1,56 +1,66 @@
-<!-- <div class="container">
-    <h3 mat-dialog-title>Issue id: {{data.id}}</h3>
+<div class="container">
+    <h3 mat-dialog-title>Dados do cliente:</h3>
+    <mat-dialog-content>
+        <form [formGroup]="form" (submit)="confirmEdit(data.id)">
 
-    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-
-        <div class="form">
-            <mat-form-field color="accent">
-                <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required>
-                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-form-field class="width">
+                <mat-label>Nome</mat-label>
+                <input type="text" matInput placeholder="Ex. Maria Clara Antônio" formControlName="nome" name="nome"
+                    #message1>
+                <mat-error *ngIf="form.get('nome').invalid">Digite um nome válido</mat-error>
+                <mat-hint align="start"><strong>Inserir seu nome completo</strong> </mat-hint>
+                <mat-hint align="end">{{message1.value.length}} / 200</mat-hint>
             </mat-form-field>
-        </div> -->
 
-<!--Textarea for demo purposes-->
-<!-- <div class="form">
-            <mat-form-field color="accent">
-                <textarea matInput #input class="form-control" placeholder="Title" [(ngModel)]="data.title" name="title"
-                    required></textarea>
-                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-form-field class="width">
+                <mat-label>E-mail</mat-label>
+                <input type="text" matInput placeholder="Ex. usuario@login.com" formControlName="email" name="email"
+                    #message2>
+                <mat-error *ngIf="form.get('email').invalid">Digite um email válido</mat-error>
+                <mat-hint align="start"><strong>Inserir o e-mail de login</strong> </mat-hint>
+                <mat-hint align="end">{{message2.value.length}} / 30</mat-hint>
             </mat-form-field>
-        </div> -->
 
-<!--Contains mat-hint for characters count and has maxLengt set-->
-<!-- <div class="form">
-            <mat-form-field color="accent">
-                <input matInput #inputstate class="form-control" placeholder="State" [(ngModel)]="data.state"
-                    name="state" maxlength="10" required>
-                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+            <mat-form-field class="width">
+                <mat-label>CPF ou CNPJ</mat-label>
+                <input type="text" matInput placeholder="Ex. XXX.XXX.XXX-XX ou XX.XXX.XXX/YYYY-ZZ" formControlName="cpf"
+                    name="cpf" #message3>
+                <mat-error *ngIf="form.get('cpf').invalid">Digite um CPF ou CNPJ válido</mat-error>
+                <mat-hint align="start"><strong>Inserir seu CPF ou CNPJ com ponto(.) e traço(-)</strong> </mat-hint>
+                <mat-hint align="end">{{message3.value.length}} / 14</mat-hint>
             </mat-form-field>
-        </div>
 
-        <div class="form">
-            <mat-form-field color="accent">
-                <input matInput placeholder="Url" [(ngModel)]="data.url" name="url">
+            <mat-form-field class="width">
+                <mat-label>Telefone de Contato</mat-label>
+                <input type="text" matInput placeholder="Ex. (XX)XXXXX-XXXX" formControlName="telefone" name="telefone"
+                    #message4>
+                <mat-error *ngIf="form.get('telefone').invalid">Digite um telefone válido</mat-error>
+                <mat-hint align="start"><strong>Inserir seu número de celuar com DDD</strong> </mat-hint>
+                <mat-hint align="end">{{message4.value.length}} / 14</mat-hint>
             </mat-form-field>
-        </div>
 
-        <div class="form">
-            <mat-form-field color="accent">
-                <input matInput placeholder="Created at" [(ngModel)]="data.created_at" name="created_at">
-            </mat-form-field>
-        </div>
+            <!-- <mat-form-field class="width">
+                <mat-label>Senha</mat-label>
+                <input type="text" matInput placeholder="Ex. XXXXXXXX" formControlName="senha" name="senha" #message5
+                    [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="form.get('senha').invalid">Digite uma senha com pelo menos 8 caracteres</mat-error>
+                <mat-hint align="start"><strong>Inserir uma senha de no mínimo 8 caracteres composta de números, letras
+                        e
+                        símbolos</strong>
+                </mat-hint>
+                <mat-hint align="end">{{message5.value.length}} / 8</mat-hint>
+            </mat-form-field> -->
 
-        <div class="form">
-            <mat-form-field color="accent">
-                <input matInput placeholder="Updated at" [(ngModel)]="data.updated_at" name="updated_at">
-            </mat-form-field>
-        </div>
+            <button mat-raised-button color="primary" class="button">Salvar</button>
 
-        <div mat-dialog-actions>
-            <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-                (click)="stopEdit()">Save</button>
-            <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-        </div>
-    </form>
-</div> -->
+        </form>
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+
+        <button mat-button (click)="onNoClick()" tabindex="-1">Fechar</button>
+    </div>
+</div>
