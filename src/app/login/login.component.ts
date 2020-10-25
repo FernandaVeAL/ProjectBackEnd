@@ -11,8 +11,6 @@ import { NgForm } from "@angular/forms";
 export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
-  public user: Cliente;
-
   constructor(private loginService: LoginService) {}
 
   onLogin(form: NgForm) {

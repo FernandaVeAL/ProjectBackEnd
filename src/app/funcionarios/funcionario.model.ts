@@ -1,8 +1,7 @@
-export interface Cliente {
+export interface Funcionario {
   id: string;
   nome: string;
   email: string;
-  cpf: string;
   telefone: string;
   senha: string;
   tipoUsuario: string;

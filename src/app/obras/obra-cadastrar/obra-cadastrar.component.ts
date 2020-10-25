@@ -1,15 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ObraService } from "../obra.service";
 @Component({
-  selector: 'app-obra-cadastrar',
-  templateUrl: './obra-cadastrar.component.html',
-  styleUrls: ['./obra-cadastrar.component.css']
+  selector: "app-obra-cadastrar",
+  templateUrl: "./obra-cadastrar.component.html",
+  styleUrls: ["./obra-cadastrar.component.css"],
 })
 export class ObraCadastrarComponent implements OnInit {
+  constructor(private obraService: ObraService) {}
 
-  constructor() { }
+  onAdicionarObra(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    const obra: any = {
+      inicio: form.value.inicio,
+      termino: form.value.termino,
+      tipo: form.value.tipo,
+      porte: form.value.porte,
+      endereco: form.value.endereco,
+      bairro: form.value.bairro,
+      cidade: form.value.cidade,
+      estado: form.value.estado,
+      complemento: form.value.complemento,
+      cep: form.value.cep,
+      aviso: form.value.aviso,
+      progresso: form.value.progresso,
+      descricao: form.value.descricao,
+    };
 
-  ngOnInit(): void {
+    this.obraService.adicionarObra(
+      form.value.inicio,
+      form.value.termino,
+      form.value.tipo,
+      form.value.porte,
+      form.value.endereco,
+      form.value.bairro,
+      form.value.cidade,
+      form.value.estado,
+      form.value.complemento,
+      form.value.cep,
+      form.value.aviso,
+      form.value.progresso,
+      form.value.descricao
+    );
+    form.reset();
   }
 
+  ngOnInit(): void {}
 }

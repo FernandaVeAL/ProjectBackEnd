@@ -5,29 +5,55 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!-- Código Column -->
   <ng-container matColumnDef="nome">
     <th mat-header-cell *matHeaderCellDef> Nome </th>
     <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
   </ng-container>
 
-  <!-- Inicio Column -->
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
-  <!-- Termino Column -->
-  <ng-container matColumnDef="tel">
+  <ng-container matColumnDef="telefone">
     <th mat-header-cell *matHeaderCellDef> Telefone </th>
-    <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.telefone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="editar">
+    <th mat-header-cell *matHeaderCellDef>
+      Editar
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="OnEditItem(element.id,element.nome,element.email,element.telefone)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="remover">
+    <th mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button matTooltip="Remove all">
+        <mat-icon>delete_all</mat-icon>
+      </button>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="OnDeleteItem(element.id,element.nome,element.email,element.telefone)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-  <!-- Row shown when there is no matching data. -->
+
   <tr class="mat-row" *matNoDataRow>
-    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    <td class="mat-cell" colspan="4">Nenhum cliente com a especificação: "{{input.value}}"</td>
   </tr>
+
 </table>
+
+<mat-paginator [pageSize]="totalDeFuncionariosPorPagina" [length]="totalDeFuncionarios"
+  [pageSizeOptions]="opcoesTotalDeFuncionariosPorPagina" (page)="onPaginaAlterada($event)" showFirstLastButtons>
+</mat-paginator>

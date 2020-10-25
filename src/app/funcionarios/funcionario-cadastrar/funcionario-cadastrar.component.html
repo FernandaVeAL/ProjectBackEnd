@@ -1,33 +1,39 @@
-<mat-card >
+<mat-card>
 
-  <form class="example-form" >
+  <form (submit)="onAdicionarFuncionario(funcionarioForm)" #funcionarioForm="ngForm">
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Nome</mat-label>
-      <input matInput #message maxlength="30" placeholder="Ex. Maria Clara Antônio">
+      <input required matInput #message1 name="nome" ngModel #nomeInput="ngModel" maxlength="200"
+        placeholder="Ex. Maria Clara Antônio">
       <mat-hint align="start"><strong>Inserir o nome completo de funcionário</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+      <mat-hint align="end">{{message1.value.length}} / 200</mat-hint>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>E-mail</mat-label>
-      <input matInput #message maxlength="30" placeholder="Ex. usuario@login.com">
+      <input required type="email" matInput #message2 name="email" ngModel #emailInput="ngModel" maxlength="30"
+        placeholder="Ex. usuario@login.com">
       <mat-hint align="start"><strong>Inserir o e-mail de funcionário</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 30</mat-hint>
+      <mat-hint align="end">{{message2.value.length}} / 30</mat-hint>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Telefone de Contato</mat-label>
-      <input matInput #message maxlength="14" placeholder="Ex. (XX)XXXXX-XXXX">
+      <input required matInput #message3 name="telefone" ngModel #telefoneInput="ngModel" maxlength="14"
+        placeholder="Ex. (XX)XXXXX-XXXX">
       <mat-hint align="start"><strong>Inserir seu número de celuar com DDD</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 14</mat-hint>
+      <mat-hint align="end">{{message3.value.length}} / 14</mat-hint>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <mat-label>Senha</mat-label>
-      <input matInput #message maxlength="8" placeholder="Ex. XXXXXXXX">
-      <mat-hint align="start"><strong>Inserir uma senha de 8 caracteres composta de números, letras e símbolos</strong> </mat-hint>
-      <mat-hint align="end">{{message.value.length}} / 8</mat-hint>
+      <input required type="password" matInput #message4 name="senha" ngModel #senhaInput="ngModel" minlength="8"
+        placeholder="Ex. XXXXXXXX">
+      <mat-hint align="start"><strong>Inserir uma senha de mínimo 8 caracteres composta de números, letras e
+          símbolos</strong>
+      </mat-hint>
+      <mat-hint align="end">{{message4.value.length}} / 8</mat-hint>
     </mat-form-field>
 
     <button mat-raised-button color="primary" class="button">Cadastrar</button>

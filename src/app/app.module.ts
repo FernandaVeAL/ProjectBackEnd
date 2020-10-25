@@ -38,9 +38,12 @@ import { EmailComponent } from "./contato/email/email.component";
 import { ObraSolicitarComponent } from "./obras/obra-solicitar/obra-solicitar.component";
 import { ObraCadastrarComponent } from "./obras/obra-cadastrar/obra-cadastrar.component";
 import { ObraFunConsultarComponent } from "./obras/obra-fun-consultar/obra-fun-consultar.component";
-import { DeleteDialogComponent } from "./clientes/dialogs/delete/delete.dialog.component";
-import { EditDialogComponent } from "./clientes/dialogs/edit/edit.dialog.component";
+import { DeleteDialogClienteComponent } from "./clientes/dialogs/delete/delete.dialog.component";
+import { EditDialogClienteComponent } from "./clientes/dialogs/edit/edit.dialog.component";
+import { DeleteDialogFuncionarioComponent } from "./funcionarios/dialogs/delete/delete.dialog.component";
+import { EditDialogFuncionarioComponent } from "./funcionarios/dialogs/edit/edit.dialog.component";
 import { LoginService } from "./login/login.service";
+import { FuncionarioService } from "./funcionarios/funcionario.service";
 
 @NgModule({
   declarations: [
@@ -56,8 +59,10 @@ import { LoginService } from "./login/login.service";
     ClienteConsultarComponent,
     ObraCadastrarComponent,
     ObraFunConsultarComponent,
-    EditDialogComponent,
-    DeleteDialogComponent,
+    EditDialogClienteComponent,
+    DeleteDialogClienteComponent,
+    EditDialogFuncionarioComponent,
+    DeleteDialogFuncionarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,8 +84,13 @@ import { LoginService } from "./login/login.service";
     MatPaginatorModule,
     MatFormFieldModule,
   ],
-  entryComponents: [EditDialogComponent, DeleteDialogComponent],
-  providers: [ClienteService, LoginService],
+  entryComponents: [
+    EditDialogClienteComponent,
+    DeleteDialogClienteComponent,
+    EditDialogFuncionarioComponent,
+    DeleteDialogFuncionarioComponent,
+  ],
+  providers: [ClienteService, LoginService, FuncionarioService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

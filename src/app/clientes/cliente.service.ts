@@ -24,6 +24,7 @@ export class ClienteService {
       cpf: cpf,
       telefone: telefone,
       senha: senha,
+      tipoUsuario: "cliente",
     };
     this.clientes.push(cliente);
     this.listaClientesAtualizada.next([...this.clientes]);

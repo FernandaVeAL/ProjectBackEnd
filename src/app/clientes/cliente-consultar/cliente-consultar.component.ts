@@ -4,8 +4,8 @@ import { Cliente } from "../cliente.model";
 import { ClienteService } from "../cliente.service";
 import { Subscription, Observable } from "rxjs";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
-import { EditDialogComponent } from "../dialogs/edit/edit.dialog.component";
-import { DeleteDialogComponent } from "../dialogs/delete/delete.dialog.component";
+import { EditDialogClienteComponent } from "../dialogs/edit/edit.dialog.component";
+import { DeleteDialogClienteComponent } from "../dialogs/delete/delete.dialog.component";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
@@ -63,7 +63,7 @@ export class ClienteConsultarComponent implements OnInit, OnDestroy {
     cpf: string,
     telefone: string
   ) {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    const dialogRef = this.dialog.open(DeleteDialogClienteComponent, {
       data: { id: id, nome: nome, email: email, cpf: cpf, telefone: telefone },
     });
   }
@@ -74,19 +74,8 @@ export class ClienteConsultarComponent implements OnInit, OnDestroy {
     cpf: string,
     telefone: string
   ) {
-    const dialogRef = this.dialog.open(EditDialogComponent, {
+    const dialogRef = this.dialog.open(EditDialogClienteComponent, {
       data: { id: id, nome: nome, email: email, cpf: cpf, telefone: telefone },
-    });
-  }
-  openDialog(): void {
-    const dialogRef = this.dialog.open(EditDialogComponent, {
-      width: "250px",
-      data: { name: this.name, animal: this.animal },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-      this.animal = result;
     });
   }
 }

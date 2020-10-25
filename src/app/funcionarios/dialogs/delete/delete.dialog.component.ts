@@ -1,16 +1,16 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Component, Inject } from "@angular/core";
-import { ClienteService } from "../../cliente.service";
+import { FuncionarioService } from "../../funcionario.service";
 
 @Component({
   selector: "app-delete.dialog",
   templateUrl: "./delete.dialog.html",
   styleUrls: ["./delete.dialog.css"],
 })
-export class DeleteDialogClienteComponent {
+export class DeleteDialogFuncionarioComponent {
   constructor(
-    public clienteService: ClienteService,
-    public dialogRef: MatDialogRef<DeleteDialogClienteComponent>,
+    public funcionarioService: FuncionarioService,
+    public dialogRef: MatDialogRef<DeleteDialogFuncionarioComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -19,7 +19,7 @@ export class DeleteDialogClienteComponent {
   }
 
   confirmDelete(id: string): void {
-    this.clienteService.removerCliente(id);
+    this.funcionarioService.removerFuncionario(id);
     this.dialogRef.close();
   }
 }

@@ -11,7 +11,7 @@ import { FuncionarioConsultarComponent } from "./funcionarios/funcionario-consul
 import { ClienteConsultarComponent } from "./clientes/cliente-consultar/cliente-consultar.component";
 import { ObraCadastrarComponent } from "./obras/obra-cadastrar/obra-cadastrar.component";
 import { ObraFunConsultarComponent } from "./obras/obra-fun-consultar/obra-fun-consultar.component";
-import { EditDialogComponent } from "./clientes/dialogs/edit/edit.dialog.component";
+import { EditDialogClienteComponent } from "./clientes/dialogs/edit/edit.dialog.component";
 
 const routes: Routes = [
   { path: "ObraSolicitar", component: ObraSolicitarComponent },
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: "Funcionario/ClienteConsultar",
     component: ClienteConsultarComponent,
   },
-  { path: "editar/:idCliente", component: EditDialogComponent },
+  { path: "editar/:idCliente", component: EditDialogClienteComponent },
 ];
 
 @NgModule({
